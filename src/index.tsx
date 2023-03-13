@@ -4,12 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const squares = Array(9).fill(null);
+
+function handleClick(index: number) {
+  console.log("Square", index, "was clicked");
+}
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <App squares={squares} onClick={handleClick} dimension={Math.floor(Math.random() * 5) * 2 + 3} />
   </React.StrictMode>
 );
 

@@ -1,0 +1,46 @@
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #ccc;
+  }
+
+  .container {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: var(--board-dimensions);
+    width: fit-content;
+  }
+
+  .status {
+    font-size: x-large;
+    margin: 25px;
+  }
+
+  .restart-button {
+    margin-top: 3vh;
+    margin-left: 6vw;
+  }
+  
+  .square {
+    width: 100px;
+    height: 100px;
+    font-size: 72px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 100px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  
+  .square:hover {
+    background-color: #eee;
+  }
+  
+  .square:focus {
+    outline: none;
+  }
