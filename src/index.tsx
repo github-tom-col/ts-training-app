@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App squares={squares} onClick={handleClick} dimension={Math.floor(Math.random() * 5) * 2 + 3} />
+    <App squares={squares} onClick={handleClick} dimension={5} />
   </React.StrictMode>
 );
 

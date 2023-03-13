@@ -11,7 +11,8 @@
   .container {
     margin-top: 10px;
     display: grid;
-    grid-template-columns: var(--board-dimensions);
+    grid-template-columns: repeat(var(--my-dim), 1fr);
+    --grid-template-columns: repeat(5, 1fr);
     width: fit-content;
   }
 
