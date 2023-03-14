@@ -6,4 +6,5 @@ export interface SquareProps {
 export interface BoardProps {
     dimension: number;
     onPlay: () => void;
+    onEnd: () => void;
   }

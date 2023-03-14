@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {TicTacToeApp} from './App';
+import {TicTacToeApp} from './functions/TicTacToeApp';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(

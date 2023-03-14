@@ -1,7 +1,6 @@
 import React from "react";
 import { render, fireEvent, RenderResult } from "@testing-library/react";
-import {Board} from "./App";
-import { BoardProps } from "./interfaces";
+import Board from "../App";
 
 describe("Board component", () => {
   let container: RenderResult["container"] | null;
@@ -9,7 +8,7 @@ describe("Board component", () => {
   let resetButton: HTMLButtonElement | null;
 
   beforeEach(() => {
-    const result = render(<Board dimension={3} onPlay ={ () => {}}  />);
+    const result = render(<Board dimension={3} onPlay ={ () => {}} onEnd ={ () => {}}  />);
     container = result.container;
     squares = Array.from(container.querySelectorAll(".square")) as (HTMLButtonElement | null)[];
     resetButton = container.querySelector(".restart-button");
