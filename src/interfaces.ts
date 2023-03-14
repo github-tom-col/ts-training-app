@@ -4,7 +4,6 @@ export interface SquareProps {
 }
 
 export interface BoardProps {
-    squares: Array<string | null>;
-    onClick: (index: number) => void;
     dimension: number;
+    onPlay: () => void;
   }
