@@ -1,39 +1,41 @@
 import "./style/styles.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { BoardProps, SquareProps } from "./interfaces";
-import { TicTacToeApp } from "./functions/TicTacToeApp";
 import { calculateWinner } from "./functions/calculateWinner";
 
-export default function Board({ dimension, onPlay, onEnd}: BoardProps = {onPlay: () => {}, onEnd: () => {}, dimension: 0}) {
+export default function Board({ dimension, onPlay, onInit }: BoardProps) {
   const [xIsNext, setXIsNext] = useState<boolean>(true);
-  const [model, setModel] = useState(() => new Array());
-  const winner = calculateWinner(model, dimension);
-  
-  function handleClick(index: number): void {
+  const [model, setModel] = useState(() => new Array(dimension ** 2).fill(null));
+  const winner = useMemo(() => calculateWinner(model, dimension), [model, dimension]);
 
-    const newModel = [...model];
-    newModel[index] = xIsNext ? "X" : "O";
-    setModel(newModel);
-    setXIsNext(!xIsNext);
-    onPlay();
-    onEnd();
+  function handleClick(index: number): void {
+    if (model[index] == null) {
+      const newModel = [...model];
+      newModel[index] = xIsNext ? "X" : "O";
+      setModel(newModel);
+      setXIsNext(!xIsNext);
+      onPlay();
+    }
   }
 
   useEffect(() => {
-    setModel(new Array(dimension * dimension).fill(null));
-  }, [dimension]);
-
-  useEffect(() => {
+    console.log("Board Internal Init")
     document.documentElement.style.setProperty("--my-dim", String(dimension));
+    setModel(new Array(dimension ** 2).fill(null))
+    onInit(() => {
+      console.log("Board Internal onInit")
+      document.documentElement.style.setProperty("--my-dim", String(dimension));
+      setModel(new Array(dimension ** 2).fill(null))
+    })
   }, [dimension]);
 
-  function renderBoard(): JSX.Element[] {
-    return model.map((element, index: number) => (
+  const renderBoard = useMemo(() => {
+    return model.map((_, index) => (
       <div key={index} className="board-row">
-        <Square key={index} value={model[index]} onSquareClick={() => handleClick(index)} />
+        <Square value={model[index]} onSquareClick={() => handleClick(index)} />
       </div>
     ));
-  }
+  }, [model]);
 
   let status;
 
@@ -48,10 +50,7 @@ export default function Board({ dimension, onPlay, onEnd}: BoardProps = {onPlay:
   return (
     <div>
       <div className="status">{status}</div>
-      <div className="container">{renderBoard()}</div>
-      <button className="restart-button" onClick={refreshPage}>
-        Reset
-      </button>
+      <div className="container">{renderBoard}</div>
     </div>
   );
 }
@@ -62,8 +61,4 @@ function Square({ value, onSquareClick }: SquareProps) {
       {value}
     </button>
   );
-}
-
-function refreshPage() {
-  window.location.reload();
 }

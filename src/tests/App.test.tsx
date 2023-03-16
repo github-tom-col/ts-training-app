@@ -9,7 +9,7 @@ function handleClick(index: number) {
 }
 
 test('renders learn react link', () => {
-  render(<Board dimension={3} onPlay ={ () => {}} onEnd ={ () => {}}/>);
+  render(<Board dimension={3} onPlay={() => { } } onInit={() => { } }/>);
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
 });

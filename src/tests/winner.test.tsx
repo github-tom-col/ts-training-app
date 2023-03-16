@@ -8,7 +8,7 @@ describe("Board component", () => {
   let resetButton: HTMLButtonElement | null;
 
   beforeEach(() => {
-    const result = render(<Board dimension={3} onPlay ={ () => {}} onEnd ={ () => {}}  />);
+    const result = render(<Board dimension={3} onPlay={() => { } } onInit={() => { } }/>);
     container = result.container;
     squares = Array.from(container.querySelectorAll(".square")) as (HTMLButtonElement | null)[];
     resetButton = container.querySelector(".restart-button");
