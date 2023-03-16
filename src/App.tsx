@@ -19,11 +19,9 @@ export default function Board({ dimension, onPlay, onInit }: BoardProps) {
   }
 
   useEffect(() => {
-    console.log("Board Internal Init")
     document.documentElement.style.setProperty("--my-dim", String(dimension));
     setModel(new Array(dimension ** 2).fill(null))
     onInit(() => {
-      console.log("Board Internal onInit")
       document.documentElement.style.setProperty("--my-dim", String(dimension));
       setModel(new Array(dimension ** 2).fill(null))
     })
